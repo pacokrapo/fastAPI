@@ -93,14 +93,13 @@ def get_actor(nombre_actor: str):
 
 #Función para conocer mas sobre un director:
 @app.get("/director/{nombre_director}")
-def get_director(nombre_director):
+def get_director(nombre_director: str):
+    
     lista_peliculas = []
     fecha_lanzamiento = []
     retorno_ind = []
     costo = []
     ganancia = []
-    exito = None
-    RetornoMax = 0
     for i in range(0,len(MoviesDataset)):
         if nombre_director in MoviesDataset["crew_names"][i]:
             lista_peliculas.append(MoviesDataset["title"][i])
@@ -108,12 +107,13 @@ def get_director(nombre_director):
             retorno_ind.append(MoviesDataset["return"][i])
             costo.append(MoviesDataset["budget"][i])
             ganancia.append(MoviesDataset["revenue"][i])
-            if MoviesDataset["return"][i]>RetornoMax:
-                RetornoMax = MoviesDataset["return"][i]
-                exito = MoviesDataset["title"][i]
         else:
             continue
-    lista = pd.DataFrame({"Nombre":lista_peliculas, "Release":fecha_lanzamiento, "Retorno": retorno_ind, "Costo": costo, "Ganancia": ganancia})
-    listajson = lista.to_json(orient="records")
+    
+    retorno_total= sum(retorno_ind)
 
-    return f"El éxito del director {nombre_director} fue la película {exito} con un retorno de {RetornoMax} y su lista de películas fue la siguiente:", listajson
+    diccionario = {"Nombre":lista_peliculas, "Release":fecha_lanzamiento, "Retorno": retorno_ind, "Costo": costo, "Ganancia": ganancia}
+
+    return {'director':nombre_director, 'retorno_total_director':retorno_total, 
+    'peliculas':diccionario["Nombre"], 'anio':diccionario["Release"], 'retorno_pelicula':diccionario["Retorno"], 
+    'budget_pelicula':diccionario["Costo"], 'revenue_pelicula':diccionario["Ganancia"]}
