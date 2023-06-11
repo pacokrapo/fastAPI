@@ -213,7 +213,7 @@ def recomendacion(titulo:str):
     titulo = titulo.title()
     posicion = MoviesTitle.index(titulo)
 
-    similitudes = index[corpus_tfidf[500]]
+    similitudes = index[corpus_tfidf[posicion]]
 
     documentos_similares_indices = similitudes.argsort()[::-1][1:6]
 
