@@ -140,6 +140,22 @@ def recomendacion(titulo:str):
         MoviesOverviews.append(MoviesDataset["overview"][i])
         MoviesTitle.append(MoviesDataset["title"][i])
 
+    Tokenizados = tokenizacion(MoviesOverviews)
+
+    posicion = MoviesTitle.index(titulo)
+
+    similitudes = matrizSimilitudes(Tokenizados, posicion)
+
+    documentos_similares_indices = similitudes.argsort()[::-1][1:6]
+
+    Titulos = []
+    for i in range(len(documentos_similares_indices)):
+        Titulos.append(MoviesTitle[documentos_similares_indices[i]])
+
+    return {'lista recomendada': Titulos}
+
+def tokenizacion(MoviesOverviews):
+
     from nltk.tokenize import word_tokenize
 
     for i in range(len(MoviesOverviews)):
@@ -189,20 +205,20 @@ def recomendacion(titulo:str):
     for i in range(len(MoviesOverviews5)):
         MoviesOverviews6[i] = [word for word in MoviesOverviews5[i] if word not in a]
 
+    return MoviesOverviews6
+
+def matrizSimilitudes(Tokenizados, posicion):
 
     from gensim import corpora, models, similarities
 
-
-    generador_elementos = (elemento for elemento in MoviesOverviews6)
-
+    generador_elementos = (elemento for elemento in Tokenizados)
 
     diccionario = corpora.Dictionary(generador_elementos)
 
-
     ListaCorpus = []
 
-    for i in range(len(MoviesOverviews6)):
-        ListaCorpus.append(diccionario.doc2bow(MoviesOverviews6[i]))
+    for i in range(len(Tokenizados)):
+        ListaCorpus.append(diccionario.doc2bow(Tokenizados[i]))
 
     tfidf = models.TfidfModel(ListaCorpus)
 
@@ -210,15 +226,6 @@ def recomendacion(titulo:str):
 
     index = similarities.MatrixSimilarity(corpus_tfidf)
 
-
-    posicion = MoviesTitle.index(titulo)
-
     similitudes = index[corpus_tfidf[posicion]]
 
-    documentos_similares_indices = similitudes.argsort()[::-1][1:6]
-
-    Titulos = []
-    for i in range(len(documentos_similares_indices)):
-        Titulos.append(MoviesTitle[documentos_similares_indices[i]])
-
-    return {'lista recomendada': Titulos}
+    return similitudes
