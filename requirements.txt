@@ -5,5 +5,4 @@ typing
 uvicorn
 scikit-learn
 nltk
-string
 gensim
