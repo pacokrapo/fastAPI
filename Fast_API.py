@@ -24,7 +24,7 @@ for i in range(len(MoviesDataset)):
 
 from nltk.tokenize import word_tokenize
 
-#nltk.download('punkt')
+nltk.download('punkt')
 
 for i in range(len(MoviesOverviews)):
     if type(MoviesOverviews[i]) == str: 
@@ -66,7 +66,7 @@ for i in range(len(MoviesOverviews4)):
 
 from nltk.corpus import stopwords
 
-#nltk.download("stopwords")
+nltk.download("stopwords")
 
 a=set(stopwords.words('english'))
 
