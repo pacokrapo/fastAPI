@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import uvicorn
 import pandas as pd
+import nltk
 
 #Para iniciar, en terminal, luego de ubicarse en el directorio de este archivo, ingresar el siguiente comando:
 #uvicorn Fast_API:app --reload
@@ -24,7 +25,7 @@ for i in range(len(MoviesDataset)):
 
 from nltk.tokenize import word_tokenize
 
-nltk.download('punkt')
+nltk.download("punkt")
 
 for i in range(len(MoviesOverviews)):
     if type(MoviesOverviews[i]) == str: 
