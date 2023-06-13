@@ -202,14 +202,14 @@ def get_actor(nombre_actor: str):
 def get_director(nombre_director: str):
     nombre_director = nombre_director.title()
     lista_peliculas = []
-    fecha_lanzamiento = []
+    lanzamiento = []
     retorno_ind = []
     costo = []
     ganancia = []
     for i in range(0,len(MoviesDataset)):
         if nombre_director in MoviesDataset["crew_names"][i]:
             lista_peliculas.append(MoviesDataset["title"][i])
-            fecha_lanzamiento.append(MoviesDataset["release_date"][i])
+            lanzamiento.append(MoviesDataset["release_year"][i])
             retorno_ind.append(MoviesDataset["Return"][i])
             costo.append(MoviesDataset["budget"][i])
             ganancia.append(MoviesDataset["revenue"][i])
@@ -218,9 +218,12 @@ def get_director(nombre_director: str):
     
     retorno_total= sum(retorno_ind)
 
-    print("director: ", nombre_director, "  retorno_total_director: ", retorno_total)
-    for i in range(len(lista_peliculas)):
-        print("pelicula: ", lista_peliculas[i], "  lanzamiento: ", fecha_lanzamiento[i], "  retorno_pelicula: ", retorno_ind[i], "  costo: ", costo[i], "  revenue_pelicula: ", ganancia[i])
+    diccionarioD = {"Peliculas": lista_peliculas, "Lanzamiento":lanzamiento, "RetornoInd": retorno_ind, "Costo":costo, "Ganancia":ganancia}
+
+    return {'director':nombre_director, 'retorno_total_director':retorno_total, 
+    'peliculas':diccionarioD["Peliculas"], 'anio':diccionarioD["Lanzamiento"], 'retorno_pelicula':diccionarioD["RetornoInd"], 
+    'budget_pelicula':diccionarioD["Costo"], 'revenue_pelicula':diccionarioD["RetornoInd"]}
+
 """
 #Funcion para conocer peliculas recomendadas a partir de un titulo:
 @app.get('/recomendacion/{titulo}')
