@@ -12,7 +12,7 @@ import nltk
 #También pueden acceder a la API en Render: https://proyecto-fastapi-ni16.onrender.com/
 
 
-MoviesDataset = pd.read_csv("DataSets\movies_dataset_final.csv", sep=',')
+MoviesDataset = pd.read_csv("DataSets/movies_dataset_final.csv", sep=',')
 
 app = FastAPI()
 
