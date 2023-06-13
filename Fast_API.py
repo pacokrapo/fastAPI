@@ -19,7 +19,7 @@ app = FastAPI()
 nltk.download("stopwords")
 nltk.download("punkt")
 
-
+""""
 #Cargamos dos listas, una con las reseñas de las peliculas y otra con los nombres para usar de referencia:
 MoviesOverviews = []
 MoviesTitle = []
@@ -114,11 +114,11 @@ corpus_tfidf = tfidf[ListaCorpus]
 
 #Generamos la matriz de similaridad, la cual se utiliza para medir la similitud entre las reseñas:
 index = similarities.MatrixSimilarity(corpus_tfidf)
-
+"""
 #Pantalla de inicio
 @app.get("/")
 def inicio():
-    return "Opciones: /cantidad_filmaciones_mes  /cantidad_filcaciones_dia  /score_titulo  /votos_titulo  /actor  /director /recomendacion"
+    return "Opciones: /cantidad_filmaciones_mes  /cantidad_filcaciones_dia  /score_titulo  /votos_titulo  /actor  /director /recomendacion(inhabilitada)"
 
 #Función de cantidad de filmaciones por mes:
 @app.get('/cantidad_filmaciones_mes/{mes}')
@@ -221,7 +221,7 @@ def get_director(nombre_director: str):
     print("director: ", nombre_director, "  retorno_total_director: ", retorno_total)
     for i in range(len(lista_peliculas)):
         print("pelicula: ", lista_peliculas[i], "  lanzamiento: ", fecha_lanzamiento[i], "  retorno_pelicula: ", retorno_ind[i], "  costo: ", costo[i], "  revenue_pelicula: ", ganancia[i])
-
+"""
 #Funcion para conocer peliculas recomendadas a partir de un titulo:
 @app.get('/recomendacion/{titulo}')
 def recomendacion(titulo:str):
