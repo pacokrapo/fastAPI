@@ -218,11 +218,11 @@ def get_director(nombre_director: str):
     
     retorno_total= sum(retorno_ind)
 
-    diccionarioD = {"Peliculas": lista_peliculas, "Lanzamiento":lanzamiento, "RetornoInd": retorno_ind, "Costo":costo, "Ganancia":ganancia}
+    dataframe = pd.DataFrame({"Pelicula": lista_peliculas, "Lanzamiento":lanzamiento, "RetornoInd": retorno_ind, "Costo":costo, "Ganancia":ganancia})
 
-    return {'director':nombre_director, 'retorno_total_director':retorno_total, 
-    'peliculas':diccionarioD["Peliculas"], 'anio':diccionarioD["Lanzamiento"], 'retorno_pelicula':diccionarioD["RetornoInd"], 
-    'budget_pelicula':diccionarioD["Costo"], 'revenue_pelicula':diccionarioD["RetornoInd"]}
+    json_respuesta = dataframe.to_json(orient='records')
+    
+    return "director:", nombre_director, "retorno_total:", retorno_total, json_respuesta
 
 """
 #Funcion para conocer peliculas recomendadas a partir de un titulo:
