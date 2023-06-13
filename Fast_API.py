@@ -221,7 +221,7 @@ def get_director(nombre_director: str):
     diccionarioD = {"Nombre":lista_peliculas, "Release":fecha_lanzamiento, "Retorno": retorno_ind, "Costo": costo, "Ganancia": ganancia}
 
     return {'director':nombre_director, 'retorno_total_director':retorno_total, 
-    'peliculas':diccionarioD["Nombre"], 'anio':diccionarioD["Release"], 'retorno_pelicula':diccionarioD["Retorno"], 
+    'peliculas':diccionarioD["Nombre"], 'lanzamiento':diccionarioD["Release"], 'retorno_pelicula':diccionarioD["Retorno"], 
     'budget_pelicula':diccionarioD["Costo"], 'revenue_pelicula':diccionarioD["Ganancia"]}
 
 #Funcion para conocer peliculas recomendadas a partir de un titulo:
