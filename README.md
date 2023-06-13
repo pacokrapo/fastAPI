@@ -12,6 +12,8 @@ Una vez transformado el DataSet, el mismo es analizado en [Analisis_Exploratorio
 El modelo de Machine Learning puede ser visualizado con ejemplos en cada paso en [modeloML.ipynb](https://github.com/pacokrapo/fastAPI/blob/main/modeloML.ipynb).
 La explicación del funcionamiento del modelo de Machine Learning puede ser visualizado en [VideoML](https://www.youtube.com/watch?v=ZrU_Kuj84BQ&ab_channel=FranciscoAndr%C3%A9sKrapovickas).
 
+Pueden ver algunos ejemplos del funcionamiento de la API en la siguiente imagen: [Imagen](https://raw.githubusercontent.com/pacokrapo/fastAPI/main/Ejemplos.bmp).
+
 Los pasos comentados de la creación del modelo de Machine Learning se encuentran en [Fast_API.ipynb](https://github.com/pacokrapo/fastAPI/blob/main/Fast_API.ipynb).
 En este mismo archivo podemos encontrar las demás funciones de la API.
 
