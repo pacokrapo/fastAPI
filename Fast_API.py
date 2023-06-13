@@ -118,7 +118,7 @@ index = similarities.MatrixSimilarity(corpus_tfidf)
 #Pantalla de inicio
 @app.get("/")
 def inicio():
-    return "Opciones: /cantidad_filmaciones_mes  /cantidad_filcaciones_dia  /score_titulo  /votos_titulo  /actor  /director /recomendacion(inhabilitada)"
+    return "Opciones: /cantidad_filmaciones_mes  /cantidad_filcaciones_dia  /score_titulo  /votos_titulo  /actor  /director /recomendacion"
 
 #Función de cantidad de filmaciones por mes:
 @app.get('/cantidad_filmaciones_mes/{mes}')
